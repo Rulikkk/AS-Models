@@ -1,0 +1,369 @@
+{
+  "name": "analytics_db 2",
+  "id": "analytics_db 2",
+  "description": "Imported database from sql server 'analytics-db-server.database.windows.net' and database 'analytics_db'",
+  "compatibilityLevel": 1200,
+  "model": {
+    "name": "analytics_db_2",
+    "description": "A Tabular data model at the 1200 compatibility level. 1111111",
+    "defaultMode": "directQuery",
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "name": "DefaultConnection",
+        "description": "A data source definition that uses explicit sql server credentials from connection string",
+        "connectionString": "Provider=SQLNCLI11;Server=tcp:analytics-db-server.database.windows.net;Initial Catalog=analytics_db;Persist Security Info=False;User ID=analytics_admin;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30",
+        "impersonationMode": "impersonateAccount"
+      }
+    ],
+    "tables": [
+      {
+        "name": "SalesLT.Product",
+        "description": "All data from SalesLT.Product 3",
+        "columns": [
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "isNullable": false,
+            "sourceColumn": "ProductID"
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Name",
+            "displayOrdinal": 1
+          },
+          {
+            "name": "ProductNumber",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "ProductNumber",
+            "displayOrdinal": 2
+          },
+          {
+            "name": "Color",
+            "dataType": "string",
+            "sourceColumn": "Color",
+            "displayOrdinal": 3
+          },
+          {
+            "name": "StandardCost",
+            "dataType": "decimal",
+            "isNullable": false,
+            "sourceColumn": "StandardCost",
+            "displayOrdinal": 4
+          },
+          {
+            "name": "ListPrice",
+            "dataType": "decimal",
+            "isNullable": false,
+            "sourceColumn": "ListPrice",
+            "displayOrdinal": 5
+          },
+          {
+            "name": "Size",
+            "dataType": "string",
+            "sourceColumn": "Size",
+            "displayOrdinal": 6
+          },
+          {
+            "name": "Weight",
+            "dataType": "decimal",
+            "sourceColumn": "Weight",
+            "displayOrdinal": 7
+          },
+          {
+            "name": "ProductCategoryID",
+            "dataType": "int64",
+            "sourceColumn": "ProductCategoryID",
+            "displayOrdinal": 8
+          },
+          {
+            "name": "ProductModelID",
+            "dataType": "int64",
+            "sourceColumn": "ProductModelID",
+            "displayOrdinal": 9
+          },
+          {
+            "name": "SellStartDate",
+            "dataType": "dateTime",
+            "isNullable": false,
+            "sourceColumn": "SellStartDate",
+            "displayOrdinal": 10
+          },
+          {
+            "name": "SellEndDate",
+            "dataType": "dateTime",
+            "sourceColumn": "SellEndDate",
+            "displayOrdinal": 11
+          },
+          {
+            "name": "DiscontinuedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "DiscontinuedDate",
+            "displayOrdinal": 12
+          },
+          {
+            "name": "ThumbNailPhoto",
+            "dataType": "binary",
+            "sourceColumn": "ThumbNailPhoto",
+            "displayOrdinal": 13
+          },
+          {
+            "name": "ThumbnailPhotoFileName",
+            "dataType": "string",
+            "sourceColumn": "ThumbnailPhotoFileName",
+            "displayOrdinal": 14
+          },
+          {
+            "name": "rowguid",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "rowguid",
+            "displayOrdinal": 15
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "isNullable": false,
+            "sourceColumn": "ModifiedDate",
+            "displayOrdinal": 16
+          }
+        ],
+        "partitions": [
+          {
+            "name": "All data",
+            "source": {
+              "query": "SELECT [ProductID],[Name],[ProductNumber],[Color],[StandardCost],[ListPrice],[Size],[Weight],[ProductCategoryID],[ProductModelID],[SellStartDate],[SellEndDate],[DiscontinuedDate],[ThumbNailPhoto],[ThumbnailPhotoFileName],[rowguid],[ModifiedDate] FROM SalesLT.Product",
+              "dataSource": "DefaultConnection"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "ProductMeasure",
+            "expression": "Average('SalesLT.Product'[Name])"
+          },
+          {
+            "name": "Coast",
+            "expression": "Average('SalesLT.Product'[StandardCost])"
+          },
+          {
+            "name": "Price",
+            "expression": "MIN('SalesLT.Product'[ListPrice])"
+          }
+        ]
+      },
+      {
+        "name": "SalesLT.ProductCategory",
+        "description": "All data from SalesLT.ProductCategory",
+        "columns": [
+          {
+            "name": "ProductCategoryID",
+            "dataType": "int64",
+            "isNullable": false,
+            "sourceColumn": "ProductCategoryID"
+          },
+          {
+            "name": "ParentProductCategoryID",
+            "dataType": "int64",
+            "sourceColumn": "ParentProductCategoryID",
+            "displayOrdinal": 1
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Name",
+            "displayOrdinal": 2
+          },
+          {
+            "name": "rowguid",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "rowguid",
+            "displayOrdinal": 3
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "isNullable": false,
+            "sourceColumn": "ModifiedDate",
+            "displayOrdinal": 4
+          }
+        ],
+        "partitions": [
+          {
+            "name": "All data",
+            "source": {
+              "query": "SELECT [ProductCategoryID],[ParentProductCategoryID],[Name],[rowguid],[ModifiedDate] FROM SalesLT.ProductCategory",
+              "dataSource": "DefaultConnection"
+            }
+          }
+        ]
+      },
+      {
+        "name": "SalesLT.Customer",
+        "description": "All data from SalesLT.Customer",
+        "columns": [
+          {
+            "name": "CustomerID",
+            "dataType": "int64",
+            "isNullable": false,
+            "sourceColumn": "CustomerID"
+          },
+          {
+            "name": "NameStyle",
+            "dataType": "boolean",
+            "isNullable": false,
+            "sourceColumn": "NameStyle",
+            "displayOrdinal": 1
+          },
+          {
+            "name": "Title",
+            "dataType": "string",
+            "sourceColumn": "Title",
+            "displayOrdinal": 2
+          },
+          {
+            "name": "FirstName",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "FirstName",
+            "displayOrdinal": 3
+          },
+          {
+            "name": "MiddleName",
+            "dataType": "string",
+            "sourceColumn": "MiddleName",
+            "displayOrdinal": 4
+          },
+          {
+            "name": "LastName",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "LastName",
+            "displayOrdinal": 5
+          },
+          {
+            "name": "Suffix",
+            "dataType": "string",
+            "sourceColumn": "Suffix",
+            "displayOrdinal": 6
+          },
+          {
+            "name": "CompanyName",
+            "dataType": "string",
+            "sourceColumn": "CompanyName",
+            "displayOrdinal": 7
+          },
+          {
+            "name": "SalesPerson",
+            "dataType": "string",
+            "sourceColumn": "SalesPerson",
+            "displayOrdinal": 8
+          },
+          {
+            "name": "EmailAddress",
+            "dataType": "string",
+            "sourceColumn": "EmailAddress",
+            "displayOrdinal": 9
+          },
+          {
+            "name": "Phone",
+            "dataType": "string",
+            "sourceColumn": "Phone",
+            "displayOrdinal": 10
+          },
+          {
+            "name": "PasswordHash",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "PasswordHash",
+            "displayOrdinal": 11
+          },
+          {
+            "name": "PasswordSalt",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "PasswordSalt",
+            "displayOrdinal": 12
+          },
+          {
+            "name": "rowguid",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "rowguid",
+            "displayOrdinal": 13
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "isNullable": false,
+            "sourceColumn": "ModifiedDate",
+            "displayOrdinal": 14
+          }
+        ],
+        "partitions": [
+          {
+            "name": "All data",
+            "source": {
+              "query": "SELECT [CustomerID],[NameStyle],[Title],[FirstName],[MiddleName],[LastName],[Suffix],[CompanyName],[SalesPerson],[EmailAddress],[Phone],[PasswordHash],[PasswordSalt],[rowguid],[ModifiedDate] FROM SalesLT.Customer",
+              "dataSource": "DefaultConnection"
+            }
+          }
+        ]
+      },
+      {
+        "name": "SalesLT.vProductAndDescription",
+        "description": "All data from SalesLT.vProductAndDescription",
+        "columns": [
+          {
+            "name": "ProductID",
+            "dataType": "int64",
+            "isNullable": false,
+            "sourceColumn": "ProductID"
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Name",
+            "displayOrdinal": 1
+          },
+          {
+            "name": "ProductModel",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "ProductModel",
+            "displayOrdinal": 2
+          },
+          {
+            "name": "Culture",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Culture",
+            "displayOrdinal": 3
+          },
+          {
+            "name": "Description",
+            "dataType": "string",
+            "isNullable": false,
+            "sourceColumn": "Description",
+            "displayOrdinal": 4
+          }
+        ],
+        "partitions": [
+          {
+            "name": "All data",
+            "source": {
+              "query": "SELECT [ProductID],[Name],[ProductModel],[Culture],[Description] FROM SalesLT.vProductAndDescription",
+              "dataSource": "DefaultConnection"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
